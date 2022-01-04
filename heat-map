@@ -1,0 +1,24 @@
+#html
+
+<div id = "title">
+  <h1> Heat Map  </h1>
+<div id = "description"> 
+  <h2> Feel the burn </h2> 
+  
+ #CSS
+ 
+ #JavaScript
+ d3.select(body) 
+   .attr("class", "cell")
+
+// Color 
+.style("color", (d) => {
+  if (d >= 0) + (d <1){
+  return "blue";}
+  if (d >= 1) + (d <2){
+  return "green";}
+  if (d >= 2) + (d <3){
+  return "yellow";}
+  else {
+  return "orange";}
+})
