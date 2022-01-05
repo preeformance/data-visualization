@@ -1,5 +1,8 @@
 #html 
-<div id="title"> Bar Chart
+
+<div>
+  <h1 id="title"> 
+    Bar Chart  </h1> 
 </div> 
     
 #CSS
@@ -13,12 +16,29 @@
     background-color: blue; 
     
 }
+.bar:hover {
+  label:
+}
+  h1 {
+    text-align: center; 
+}
 </style> 
 
 #JavaScript
  
-d3.json(https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json)       
-      
+const xScale = d3.scaleLinear()
+                  .domain()
+                  .range()
+const yScale = d3.scaleLinear()
+                  .domain
+                  .range()
+
+
+fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json')    
+  .then(response => response.json())
+  .then(data => {document.getElementById('message').innerHTML)
+  
+
 const svg = d3.select("body")
               .append(svg)
               .attr("width", w)
@@ -33,7 +53,19 @@ svg.selectAll("rect")
    .attr("x", (d, i) => {
   return i * 2
 })
-   .attr("y", 0)
+   .attr("y", (d, i) => {
+        return (h - 2 * d)
+})
    .attr("width", 1)
-   .attr("height", 100)
+   .attr("height",(d, i) => 2*d)
+   .attr("fill", "blue")
+   .attr("class", "bar")
+                 
+const xAxis = d3.axisBottom(xScale)
+const yAxis = d3.axisLeft(yScale)
 
+svg.append("g")
+    .attr("transform", "translate(0, " + h - padding + ")")
+     .call(xAxis)             
+                 
+              
