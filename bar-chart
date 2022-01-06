@@ -26,23 +26,35 @@
 
 #JavaScript
  
-const xScale = d3.scaleLinear()
-                  .domain()
-                  .range()
-const yScale = d3.scaleLinear()
-                  .domain
-                  .range()
+// data from json
 
-
-fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json')    
-  .then(response => response.json())
-  .then(data => {document.getElementById('message').innerHTML)
-  
+fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json') 
+  .then(response => response.json)
+  .then(data => {
+		document.getElementById('dataset').innerHTML = JSON.stringify(data);
+	}) 
 
 const svg = d3.select("body")
               .append(svg)
-              .attr("width", w)
-              .attr("height", h)
+              .attr("width", 800)
+              .attr("height", 500)
+
+// frame setup
+
+function barChart(dataset) {
+  const height = 800;
+  const width = 500;
+  const padding = 30; 
+
+const xScale = d3.scaleLinear()
+                  .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
+                  .range([padding, width-padding])
+const yScale = d3.scaleLinear()
+                  .domain([0, d3.max(data, d => d[1])])
+                  .range([height-padding, padding])
+} 
+
+// bars
 
 svg.selectAll("rect")
    .data(dataset)
@@ -59,13 +71,21 @@ svg.selectAll("rect")
    .attr("width", 1)
    .attr("height",(d, i) => 2*d)
    .attr("fill", "blue")
-   .attr("class", "bar")
-                 
+   
+
+// axis 
+
 const xAxis = d3.axisBottom(xScale)
 const yAxis = d3.axisLeft(yScale)
 
 svg.append("g")
+    .attr("id", "x-axis")
     .attr("transform", "translate(0, " + h - padding + ")")
-     .call(xAxis)             
+     .call(xAxis) 
+                 
+svg.append("g")
+    .attr("id", "y-axis")
+    .attr("transform", "translate( + padding + ", 0")") 
+    .call(yAxis) 
                  
               
