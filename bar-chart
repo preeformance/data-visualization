@@ -26,15 +26,14 @@
 
 #JavaScript
  
-// data from json
+// fetch json
 
-fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json') 
-  .then(response => response.json)
-  .then(data => {
-		document.getElementById('dataset').innerHTML = JSON.stringify(data);
-	}) 
-
-const svg = d3.select("body")
+fetch("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json")   
+  .then(res => res.json())
+  .then(data => {document.getElementById('dataset').innerHTML = JSON.stringify(data);
+	})
+      
+const dataset = d3.select("data")
               .append(svg)
               .attr("width", 800)
               .attr("height", 500)
@@ -81,11 +80,11 @@ const yAxis = d3.axisLeft(yScale)
 svg.append("g")
     .attr("id", "x-axis")
     .attr("transform", "translate(0, " + h - padding + ")")
-     .call(xAxis) 
+    .call(xAxis); 
                  
 svg.append("g")
     .attr("id", "y-axis")
-    .attr("transform", "translate( + padding + ", 0")") 
-    .call(yAxis) 
+    .attr("transform", "translate(" + padding + ", 0") 
+    .call(yAxis);
                  
               
